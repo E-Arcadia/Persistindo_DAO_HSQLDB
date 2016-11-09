@@ -19,6 +19,11 @@ public class AdapterJTable  extends AbstractTableModel{
 	public int getColumnCount() {
 		return colunasNome.length;
 	}
+	
+	@Override
+	public String getColumnName(int col) {
+        return colunasNome[col];
+    }
 
 	@Override
 	public int getRowCount() {

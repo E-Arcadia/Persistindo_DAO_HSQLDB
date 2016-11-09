@@ -8,7 +8,8 @@ public class Conexao {
 	private String DRIVER_CLASS = "org.hsqldb.jdbcDriver";
 	private String usuario = "SA";
 	private String senha = "";
-	private String PathBase = "C:\\Users\\978907\\workspace\\Persistencia\\base\\carros";
+	private String PathBase = "C:\\Users\\marti\\workspace\\Persistindo_DAO_HSQLDB\\base\\carros";
+			//"C:\\Users\\978907\\workspace\\Persistencia\\base\\carros";
 	private final String URL = "jdbc:hsqldb:file:" + PathBase + ";shutdown=true;hsqldb.write_delay=false; ";
 
 	

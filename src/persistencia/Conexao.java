@@ -1,32 +1,50 @@
 package persistencia;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+
+
 
 public class Conexao {
-	private String DRIVER_CLASS = "org.hsqldb.jdbcDriver";
-	private String usuario = "SA";
-	private String senha = "";
-	private String PathBase = "C:\\Users\\marti\\workspace\\Persistindo_DAO_HSQLDB\\base\\carros";
-			//"C:\\Users\\978907\\workspace\\Persistencia\\base\\carros";
-	private final String URL = "jdbc:hsqldb:file:" + PathBase + ";shutdown=true;hsqldb.write_delay=false; ";
+	InputStreamReader inputStreamReader = null;
 
-	
-	
-	public Connection getConexao(){
-		
+    private static Properties properties = new Properties();
+    
+
+    public void load() {
+        try {
+        	
+        	inputStreamReader = new InputStreamReader(new FileInputStream(new File("conf.properties")), "UTF-8");
+            properties.load(inputStreamReader);
+        } catch (IOException e) {
+        	System.err.println("conf.properties not found");
+        }
+    }
+
+  	public Connection getConexao(){
+		load();
 		try {
-			Class.forName(DRIVER_CLASS);
-			return DriverManager.getConnection(URL, usuario, senha);
+			Class.forName(properties.getProperty("DRIVER_CLASS"));
+			String URL_BASE = properties.getProperty("URL") + properties.getProperty("BASE");
+			return DriverManager.getConnection(URL_BASE, 
+					properties.getProperty("USUARIO"), 
+					properties.getProperty("SENHA"));
 		} catch (ClassNotFoundException e) {
 			System.err.println("ClassNotFoundException - ");
 			e.printStackTrace();
 		}catch (SQLException e) {
 			System.err.println("SQLException");
+			e.printStackTrace();
+			
 		}
-		
-		System.out.println("Conectou!!!");
 		return null;
 	}
 }

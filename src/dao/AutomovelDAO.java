@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import entidade.Automovel;
 import persistencia.Conexao;
+import entidade.Automovel;
 
 public class AutomovelDAO {
 	private String INSERE_AUTOMOVEL = "INSERT INTO AUTOMOVEIS(PLACA,ANO) VALUES (?,?)";

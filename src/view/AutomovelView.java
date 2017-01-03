@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Scrollbar;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;

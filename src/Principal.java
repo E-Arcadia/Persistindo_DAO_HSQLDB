@@ -1,6 +1,6 @@
+import view.AutomovelView;
 import dao.AutomovelDAO;
 import entidade.Automovel;
-import view.AutomovelView;
 
 public class Principal {
 

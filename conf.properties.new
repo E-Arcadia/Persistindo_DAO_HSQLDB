@@ -1,0 +1,8 @@
+#Conexão com HSQLDB
+#Wed Jan 04 09:00:09 BRST 2017
+URL=jdbc\:hsqldb\:hsql\://localhost/
+BASE=xdb
+SENHA=
+DRIVER_CLASS=org.hsqldb.jdbcDriver
+USUARIO=SA
+NOME=MARTIN

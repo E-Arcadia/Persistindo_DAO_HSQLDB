@@ -11,7 +11,7 @@ import entidade.Automovel;
 public class AutomovelView extends JFrame {
 	
 	public AutomovelView( ArrayList<Automovel> listaAutomovel) {
-		setBounds(200, 100, 100, 280);
+		setBounds(200, 100, 300, 380);
 		JTable automovelJTable = new JTable(new AdapterJTable(listaAutomovel));
 		automovelJTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		

@@ -1,11 +1,10 @@
 package persistencia;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,23 +13,18 @@ import java.util.Properties;
 
 
 public class Conexao {
-	InputStreamReader inputStreamReader = null;
+    private Properties properties = new Properties();
 
-    private static Properties properties = new Properties();
-    
-
-    public void load() {
-        try {
-        	
-        	inputStreamReader = new InputStreamReader(new FileInputStream(new File("conf.properties")), "UTF-8");
-            properties.load(inputStreamReader);
+    public void loadProperties() {
+        try (BufferedReader bufferedReader = Files.newBufferedReader(Paths.get("conf.properties"),StandardCharsets.UTF_8)){
+           	properties.load(bufferedReader);
         } catch (IOException e) {
-        	System.err.println("conf.properties not found");
+        	System.err.println("Arquivo conf.properties não encontrado");
         }
     }
 
   	public Connection getConexao(){
-		load();
+		loadProperties();
 		try {
 			Class.forName(properties.getProperty("DRIVER_CLASS"));
 			String URL_BASE = properties.getProperty("URL") + properties.getProperty("BASE");
